@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#7c1838">
+<title>SpendWise — Personal Finance (Supabase Build 2026-10-11)</title>
+<style>
+:root{--burgundy:#7c1838;--wine:#9e234b;--rose:#f7e8ed;--pink:#d85b80;--ink:#24151b;--muted:#75666c;--line:#eee5e8;--green:#13795b;--greenbg:#e9f7f1;--amber:#a86613;--amberbg:#fff4df;--white:#fff;--bg:#fcfafb;--shadow:0 8px 28px rgba(67,20,37,.055)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,select{font:inherit}button{cursor:pointer}.app{display:grid;grid-template-columns:238px minmax(0,1fr);min-height:100vh}.sidebar{background:#fff;border-right:1px solid var(--line);padding:24px 15px;display:flex;flex-direction:column;gap:25px}.brand{display:flex;align-items:center;gap:10px;padding:0 9px}.brand-mark{width:37px;height:37px;border-radius:12px;background:var(--burgundy);color:#fff;display:grid;place-items:center;font-size:20px;font-weight:800}.brand strong{font-size:21px;letter-spacing:-.7px}.brand small{display:block;color:var(--muted);font-size:11px;margin-top:-3px}.nav{display:grid;gap:5px}.nav button{border:0;background:transparent;text-align:left;padding:12px 13px;border-radius:10px;color:#5e3342;display:flex;gap:12px;align-items:center;font-weight:550}.nav button span{font-size:17px;width:19px;text-align:center}.nav button.active,.nav button:hover{background:var(--burgundy);color:white}.side-note{margin-top:auto;background:linear-gradient(145deg,#fbf0f2,#fff8f5);border-radius:18px;padding:20px 17px;color:#6d243b}.side-note .plant{font-size:42px;margin-bottom:9px}.side-note strong{font-family:Georgia,serif;font-size:18px;display:block;line-height:1.25}.side-note p{font-size:12px;line-height:1.6;color:#805563;margin-bottom:0}.main{min-width:0;padding:25px 27px 16px}.topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:23px}.hello h1{font:700 30px/1.2 Georgia,serif;letter-spacing:-.7px;margin:0 0 5px}.hello p{margin:0;color:var(--muted)}.day-pill{border:1px solid var(--line);border-radius:13px;background:#fff;padding:12px 16px;min-width:230px}.day-row{display:flex;justify-content:space-between;align-items:center;font-weight:700}.day-pill small{color:var(--muted)}.track{height:7px;background:#f1e4e8;border-radius:9px;overflow:hidden;margin-top:9px}.track span{display:block;height:100%;background:var(--burgundy);border-radius:9px;transition:width .25s}.avatar{display:flex;align-items:center;gap:9px;border:1px solid var(--line);background:#fff;border-radius:12px;padding:9px 12px}.avatar b{background:var(--burgundy);color:#fff;width:30px;height:30px;border-radius:50%;display:grid;place-items:center}.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:15px}.metric,.panel{background:#fff;border:1px solid var(--line);border-radius:15px;box-shadow:var(--shadow)}.metric{padding:17px;display:flex;gap:12px;align-items:flex-start;min-width:0}.metric-icon{flex:0 0 42px;width:42px;height:42px;display:grid;place-items:center;background:#fbf0f3;color:var(--burgundy);border-radius:13px;font-size:20px}.metric-icon.green{background:var(--greenbg);color:var(--green)}.metric-label{color:var(--muted);font-size:12px}.metric-value{font-size:23px;letter-spacing:-.5px;font-weight:750;line-height:1.35;white-space:nowrap}.metric-sub{font-size:12px;color:var(--muted)}.green-text{color:var(--green)!important}.red-text{color:var(--burgundy)!important}.layout{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(280px,.95fr);gap:14px}.leftcol,.rightcol{display:grid;gap:13px;align-content:start;min-width:0}.panel{padding:17px 18px}.panel-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:13px}.panel h2{font-size:15px;margin:0;letter-spacing:-.2px}.panel-head small{color:var(--muted)}.select{border:1px solid var(--line);border-radius:9px;padding:8px 10px;background:#fff;color:var(--ink)}.chart-legend{display:flex;gap:15px;flex-wrap:wrap;color:var(--muted);font-size:11px;justify-content:center;margin:3px 0 8px}.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px}.chart-wrap{height:210px;position:relative}.chart-wrap canvas{width:100%;height:100%;display:block}.mini-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px}.mini{padding:14px;background:#fff;border:1px solid var(--line);border-radius:13px}.mini .icon{font-size:18px}.mini label{display:block;color:var(--muted);font-size:11px;margin-top:5px}.mini strong{display:block;font-size:19px;margin:2px 0}.mini small{font-size:11px;color:var(--green)}.bottom-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}.breakdown-row{display:grid;grid-template-columns:10px minmax(0,1fr) auto;align-items:center;gap:8px;margin:11px 0;font-size:12px}.breakdown-row .amount{color:var(--muted)}.donut-layout{display:grid;grid-template-columns:150px minmax(0,1fr);gap:16px;align-items:center}.donut{width:145px;height:145px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--burgundy) 0 35%,#b83b60 35% 53%,#d75c80 53% 70%,#ef8da8 70% 84%,#dba6b5 84% 94%,#f3d7df 94% 100%);position:relative}.donut:after{content:"";position:absolute;inset:25px;background:white;border-radius:50%}.donut-center{position:relative;z-index:1;text-align:center}.donut-center strong{font-size:19px;display:block}.donut-center small{font-size:10px;color:var(--muted)}.goal{margin:14px 0}.goal-top{display:flex;align-items:center;gap:10px}.goal-emoji{width:36px;height:36px;border-radius:12px;background:#fbf0f3;display:grid;place-items:center;font-size:18px}.goal-info{flex:1;min-width:0}.goal-info strong{display:block;font-size:12px}.goal-info small{font-size:11px;color:var(--muted)}.goal-percent{font-size:11px;color:var(--burgundy);font-weight:700}.goal .track{height:6px;margin-top:8px}.commitment{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #f4edef}.commitment:last-child{border:0}.commit-icon{width:35px;height:35px;flex:0 0 35px;background:#fbf0f3;border-radius:11px;display:grid;place-items:center;font-size:16px}.commit-text{flex:1;min-width:0}.commit-text strong{display:block;font-size:12px}.commit-text small{color:var(--muted);font-size:11px}.commitment .money{font-weight:650}.risk-line{display:flex;justify-content:space-between;align-items:center;margin:8px 0 10px}.risk-line strong{font-size:18px;color:var(--green)}.gauge{height:8px;border-radius:10px;background:#eee5e8;overflow:hidden}.gauge span{height:100%;display:block;border-radius:10px;background:var(--green);transition:width .25s}.risk-note{background:#f9f4ef;border-radius:10px;padding:10px 11px;margin-top:12px;font-size:11px;color:#765345}.cta{border:0;border-radius:13px;background:linear-gradient(110deg,#7c1838,#a82b52);color:#fff;padding:16px;display:flex;align-items:center;gap:12px;text-align:left;width:100%;box-shadow:0 7px 18px #7c18381c}.cta .cta-icon{font-size:22px;background:#ffffff24;border-radius:11px;padding:8px}.cta strong{display:block;font-size:13px}.cta small{display:block;opacity:.86;font-size:11px;line-height:1.5;margin-top:4px}.cta .arrow{margin-left:auto;font-size:20px}.primary{border:0;background:var(--burgundy);color:white;padding:10px 14px;border-radius:9px;font-weight:650}.secondary{border:1px solid var(--line);background:#fff;color:var(--burgundy);padding:9px 12px;border-radius:9px;font-weight:600}.text-btn{border:0;background:transparent;color:var(--burgundy);font-size:12px;font-weight:650}.footer{text-align:center;color:#552335;font-size:12px;padding:22px 0 5px}.footer span{display:inline-block;width:46px;height:1px;background:#8d5c6d;vertical-align:middle;margin:0 14px}.view{display:none}.view.active{display:block}.page-title{font:700 28px Georgia,serif;margin:0 0 5px}.page-sub{color:var(--muted);margin:0 0 22px}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.field{display:grid;gap:6px;margin-bottom:12px}.field label{font-size:12px;font-weight:650;color:#61404b}.field input,.field select{width:100%;padding:11px 12px;border:1px solid #e8dce1;border-radius:10px;background:white;outline:none}.field input:focus,.field select:focus{border-color:var(--burgundy);box-shadow:0 0 0 3px #7c183812}.form-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}.result-box{padding:15px;border-radius:12px;background:#fbf0f3;margin-top:14px}.result-box strong{font-size:20px}.result-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:12px}.result-grid div{background:white;border:1px solid var(--line);border-radius:10px;padding:11px}.result-grid small{display:block;color:var(--muted);font-size:11px}.result-grid b{display:block;margin-top:4px}.table-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse;min-width:450px}th,td{text-align:left;padding:12px 10px;border-bottom:1px solid #f0e8eb;font-size:12px}th{color:var(--muted);font-weight:650;background:#fdfafb}td:last-child,th:last-child{text-align:right}.empty{color:var(--muted);padding:18px;text-align:center}.health-score{font-size:45px;line-height:1.1;font-weight:800;color:var(--burgundy)}.health-card{display:flex;gap:18px;align-items:center}.health-copy{flex:1}.health-copy h3{margin:0 0 5px}.health-copy p{margin:0;color:var(--muted)}.notice{border-radius:11px;background:#f5fbf8;color:#236b52;padding:12px;font-size:12px;margin-top:12px}.toast{position:fixed;bottom:20px;left:50%;transform:translate(-50%,20px);background:#28151d;color:#fff;padding:12px 17px;border-radius:10px;opacity:0;pointer-events:none;transition:.2s;z-index:20;box-shadow:var(--shadow)}.toast.show{opacity:1;transform:translate(-50%,0)}.mobile-menu{display:none}
+@media(max-width:1150px){.app{grid-template-columns:205px minmax(0,1fr)}.main{padding:22px 18px}.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.mini-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.layout{grid-template-columns:minmax(0,1.4fr) minmax(255px,1fr)}.donut-layout{grid-template-columns:120px 1fr}.donut{width:118px;height:118px}.donut:after{inset:21px}}
+@media(max-width:820px){.app{display:block}.sidebar{position:fixed;z-index:10;top:0;bottom:0;left:0;width:255px;transform:translateX(-105%);transition:transform .22s;box-shadow:var(--shadow)}.sidebar.open{transform:translateX(0)}.mobile-menu{display:inline-grid;place-items:center;border:1px solid var(--line);background:white;border-radius:10px;width:40px;height:40px;font-size:19px}.main{padding:16px 14px}.topbar{align-items:flex-start}.hello h1{font-size:25px}.hello p{font-size:12px}.day-pill{display:none}.layout{grid-template-columns:1fr}.rightcol{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start}.rightcol .cta{align-self:stretch}.bottom-grid{grid-template-columns:1fr 1fr}.footer{padding-bottom:20px}}
+@media(max-width:560px){.topbar{gap:9px}.hello{flex:1}.hello h1{font-size:22px}.hello p{max-width:245px}.avatar{padding:5px 7px;font-size:12px}.avatar b{width:27px;height:27px}.metrics{gap:8px}.metric{padding:12px;gap:8px}.metric-icon{width:34px;height:34px;flex-basis:34px;font-size:17px;border-radius:10px}.metric-value{font-size:19px}.metric-label,.metric-sub{font-size:10px}.panel{padding:14px}.mini-grid{gap:8px}.mini{padding:11px}.mini strong{font-size:17px}.bottom-grid{grid-template-columns:1fr}.rightcol{grid-template-columns:1fr}.chart-wrap{height:185px}.donut-layout{grid-template-columns:115px 1fr;gap:10px}.donut{width:110px;height:110px}.form-grid{grid-template-columns:1fr}.result-grid{grid-template-columns:1fr 1fr}.health-card{align-items:flex-start;flex-direction:column}.footer span{width:20px;margin:0 7px}}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar" id="sidebar">
+  <div class="brand"><div class="brand-mark">⌁</div><div><strong>SpendWise</strong><small>Plan. Decide. Live Better.</small></div></div>
+  <nav class="nav" id="nav">
+    <button class="active" data-view="dashboard"><span>⌂</span>Dashboard</button>
+    <button data-view="expense"><span>⊕</span>Add Expense</button>
+    <button data-view="simulate"><span>♧</span>Simulate Decision</button>
+    <button data-view="subscriptions"><span>▤</span>Subscriptions</button>
+    <button data-view="goals"><span>◎</span>Savings Goals</button>
+    <button data-view="reports"><span>▥</span>Reports</button>
+    <button data-view="health"><span>♡</span>Financial Health</button>
+    <button data-view="profile"><span>♙</span>My Profile</button>
+  </nav>
+  <div class="side-note"><div class="plant">🌱</div><strong>Small decisions.<br>Big future.</strong><p>Stay in control, build better habits and make your money work for you.</p></div>
+</aside>
+<main class="main">
+<header class="topbar">
+  <button class="mobile-menu" id="menuBtn" aria-label="Open navigation">☰</button>
+  <div class="hello"><h1>Hello, <span id="welcomeName" style="color:var(--burgundy)">there!</span> 👋</h1><p>You’ve got this! Make every rupee count.</p></div>
+  <div class="day-pill"><div class="day-row"><span id="dayLabel">Day 1 of 30</span><small id="daysLeft">30 days left</small></div><div class="track"><span id="dayTrack" style="width:3.3%"></span></div></div>
+  <button class="avatar" id="accountBtn" type="button"><b id="avatarInitial">U</b><span id="accountLabel">Sign in</span>⌄</button>
+</header>
+
+<section class="view active" id="view-dashboard">
+  <div class="metrics">
+    <div class="metric"><div class="metric-icon">▣</div><div><div class="metric-label">Starting Budget</div><div class="metric-value" id="mBudget">₹10,000</div><div class="metric-sub">30-day plan</div></div></div>
+    <div class="metric"><div class="metric-icon green">▱</div><div><div class="metric-label">Remaining Balance</div><div class="metric-value" id="mBalance">₹10,000</div><div class="metric-sub green-text" id="mBalanceSub">100% available</div></div></div>
+    <div class="metric"><div class="metric-icon">▦</div><div><div class="metric-label">Daily Allowance</div><div class="metric-value" id="mDaily">₹333</div><div class="metric-sub" id="mDailySub">per day remaining</div></div></div>
+    <div class="metric"><div class="metric-icon green">♧</div><div><div class="metric-label">Financial Health</div><div class="metric-value" id="mHealth">Good</div><div class="metric-sub" id="mHealthSub">Keep going!</div></div></div>
+  </div>
+  <div class="layout">
+    <div class="leftcol">
+      <div class="panel">
+        <div class="panel-head"><h2>Your 30-Day Financial Overview</h2><select class="select" id="chartMode" aria-label="Chart view"><option value="daily">Daily view</option><option value="cumulative">Balance forecast</option></select></div>
+        <div class="chart-legend"><span><i class="dot" style="background:#7c1838"></i>Spending</span><span><i class="dot" style="background:#e38ba6"></i>Daily allowance</span><span><i class="dot" style="background:#c13c61"></i>Balance line</span></div>
+        <div class="chart-wrap"><canvas id="financeChart" aria-label="Budget chart"></canvas></div>
+      </div>
+      <div class="mini-grid">
+        <div class="mini"><span class="icon">↗</span><label>Budget used</label><strong id="miniSpent">₹0</strong><small id="miniSpentPct">0% of budget</small></div>
+        <div class="mini"><span class="icon">◉</span><label>Committed costs</label><strong id="miniCommit">₹0</strong><small>Upcoming bills</small></div>
+        <div class="mini"><span class="icon">✳</span><label>Goal savings</label><strong id="miniSavings">₹0</strong><small>Saved so far</small></div>
+        <div class="mini"><span class="icon">▣</span><label>Subscriptions</label><strong id="miniSubs">₹0</strong><small>Monthly recurring</small></div>
+      </div>
+      <div class="bottom-grid">
+        <div class="panel"><div class="panel-head"><h2>Spending Breakdown</h2><small>This month</small></div><div class="donut-layout"><div class="donut" id="donut"><div class="donut-center"><strong id="donutTotal">₹0</strong><small>Total spent</small></div></div><div id="breakdown"></div></div></div>
+        <div class="panel"><div class="panel-head"><h2>Savings Goals</h2><button class="text-btn" data-goto="goals">Manage goals ↗</button></div><div id="goalPreview"></div><button class="secondary" data-goto="goals" style="width:100%">＋ Add or edit a goal</button></div>
+      </div>
+    </div>
+    <div class="rightcol">
+      <div class="panel"><div class="panel-head"><h2>Budget Progress</h2><strong id="progressPct" style="color:var(--burgundy);font-size:20px">100%</strong></div><div class="track" style="height:12px"><span id="budgetTrack" style="width:100%"></span></div><div style="display:flex;justify-content:space-between;margin-top:12px"><div><small style="color:var(--muted)">Spent</small><div id="spentLabel" style="font-size:17px;font-weight:750">₹0</div></div><div style="text-align:right"><small style="color:var(--muted)">Remaining</small><div id="remainingLabel" style="font-size:17px;font-weight:750">₹10,000</div></div></div></div>
+      <div class="panel"><div class="panel-head"><h2>Upcoming Commitments</h2><button class="text-btn" data-goto="subscriptions">View all</button></div><div id="commitPreview"></div></div>
+      <div class="panel"><div class="panel-head"><h2>Financial Risk</h2><small>● Live estimate</small></div><div class="risk-line"><strong id="riskLabel">Low risk</strong><b id="riskPct">0%</b></div><div class="gauge"><span id="riskBar" style="width:0%"></span></div><div class="risk-note" id="riskNote">✦ Your budget is in a healthy position. Keep a buffer for surprises.</div></div>
+      <button class="cta" data-goto="simulate"><span class="cta-icon">▦</span><span><strong>Simulate a Financial Decision</strong><small>See how a purchase, subscription or surprise bill could change your plan.</small></span><span class="arrow">›</span></button>
+    </div>
+  </div>
+</section>
+
+<section class="view" id="view-expense">
+  <h1 class="page-title">Add an expense</h1><p class="page-sub">Log what you spend to keep your 30-day plan realistic.</p>
+  <div class="panel" style="max-width:760px"><div class="form-grid">
+    <div class="field"><label for="expenseName">What did you spend on?</label><input id="expenseName" placeholder="e.g. Lunch with friends" maxlength="70"></div>
+    <div class="field"><label for="expenseAmount">Amount (₹)</label><input id="expenseAmount" type="number" min="1" max="100000" placeholder="250"></div>
+    <div class="field"><label for="expenseCategory">Category</label><select id="expenseCategory"><option>Food & Dining</option><option>Transport</option><option>Shopping</option><option>Entertainment</option><option>Bills & Utilities</option><option>Health</option><option>Education</option><option>Others</option></select></div>
+    <div class="field"><label for="expenseDate">Day of plan</label><select id="expenseDate"></select></div>
+  </div><div class="form-actions"><button class="primary" id="addExpenseBtn">Save expense</button><button class="secondary" data-goto="dashboard">Cancel</button></div><div class="notice">Expenses immediately update your balance, daily allowance, forecast, risk score and category breakdown.</div></div>
+  <div class="panel" style="margin-top:14px"><div class="panel-head"><h2>Recent transactions</h2><small id="transactionCount">0 transactions</small></div><div class="table-wrap"><table><thead><tr><th>Expense</th><th>Category</th><th>Plan day</th><th>Amount</th><th></th></tr></thead><tbody id="transactionRows"></tbody></table></div></div>
+</section>
+
+<section class="view" id="view-simulate">
+  <h1 class="page-title">Think it through first.</h1><p class="page-sub">Try a decision before spending real money. Nothing changes until you confirm it.</p>
+  <div class="layout">
+    <div class="panel"><div class="panel-head"><h2>Decision simulator</h2><span style="font-size:11px;color:var(--muted)">Preview only</span></div>
+      <div class="field"><label for="simType">Decision type</label><select id="simType"><option value="purchase">One-time purchase</option><option value="subscription">New monthly subscription</option><option value="unexpected">Unexpected expense</option><option value="save">Move money into savings</option><option value="income">Extra income</option></select></div>
+      <div class="field"><label for="simName">Decision name</label><input id="simName" value="New headphones" maxlength="70"></div>
+      <div class="field"><label for="simAmount">Amount (₹)</label><input id="simAmount" type="number" min="0" max="100000" value="1800"></div>
+      <div class="field"><label for="simCategory">Spending category</label><select id="simCategory"><option>Shopping</option><option>Food & Dining</option><option>Transport</option><option>Entertainment</option><option>Bills & Utilities</option><option>Health</option><option>Education</option><option>Others</option></select></div>
+      <div class="field"><label for="simDay">When would this happen?</label><select id="simDay"></select></div>
+      <div class="form-actions"><button class="primary" id="previewDecision">Preview impact</button><button class="secondary" id="resetSim">Reset</button></div>
+      <div id="simResult" class="result-box" style="display:none"></div>
+      <div class="form-actions" id="simActions" style="display:none"><button class="primary" id="confirmDecision">Apply decision to plan</button><button class="secondary" id="discardDecision">Discard preview</button></div>
+    </div>
+    <div class="leftcol">
+      <div class="panel"><h2>What changes when you decide?</h2><div class="commitment"><div class="commit-icon">₹</div><div class="commit-text"><strong>Remaining balance</strong><small>How much money stays available</small></div></div><div class="commitment"><div class="commit-icon">◷</div><div class="commit-text"><strong>Daily allowance</strong><small>What you can spend each remaining day</small></div></div><div class="commitment"><div class="commit-icon">↗</div><div class="commit-text"><strong>Month-end forecast</strong><small>Projected balance after planned commitments</small></div></div><div class="commitment"><div class="commit-icon">♡</div><div class="commit-text"><strong>Financial risk and health</strong><small>Whether this decision leaves enough breathing room</small></div></div></div>
+      <div class="panel"><h2>Decision rule of thumb</h2><p style="color:var(--muted);margin-bottom:0">Try to keep a buffer for unexpected expenses. A purchase can be affordable today but still make the rest of the month harder. Compare the new daily allowance and forecast—not just the price tag.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="view" id="view-subscriptions">
+  <h1 class="page-title">Commitments & subscriptions</h1><p class="page-sub">Recurring charges can quietly shrink your budget. Keep them visible.</p>
+  <div class="panel"><div class="panel-head"><h2>Your recurring commitments</h2><button class="primary" id="addSubToggle">＋ Add commitment</button></div>
+    <div id="subForm" style="display:none;background:#fcf7f9;border-radius:12px;padding:14px;margin-bottom:15px"><div class="form-grid"><div class="field"><label for="subName">Name</label><input id="subName" placeholder="e.g. Music subscription"></div><div class="field"><label for="subAmount">Monthly amount (₹)</label><input id="subAmount" type="number" min="1" placeholder="149"></div><div class="field"><label for="subDate">Due on plan day</label><select id="subDate"></select></div><div class="field"><label for="subType">Type</label><select id="subType"><option>Subscription</option><option>Bill</option><option>Other commitment</option></select></div></div><button class="primary" id="saveSub">Save commitment</button> <button class="secondary" id="cancelSub">Cancel</button></div>
+    <div id="subscriptionList"></div><div class="notice" id="subscriptionSummary"></div>
+  </div>
+</section>
+
+<section class="view" id="view-goals">
+  <h1 class="page-title">Savings goals</h1><p class="page-sub">Give your money a purpose. Track progress and see what’s realistic.</p>
+  <div class="panel"><div class="panel-head"><h2>Your goals</h2><button class="primary" id="addGoalToggle">＋ Add goal</button></div>
+    <div id="goalForm" style="display:none;background:#fcf7f9;border-radius:12px;padding:14px;margin-bottom:15px"><div class="form-grid"><div class="field"><label for="goalName">Goal name</label><input id="goalName" placeholder="e.g. Emergency fund"></div><div class="field"><label for="goalTarget">Target amount (₹)</label><input id="goalTarget" type="number" min="1" placeholder="5000"></div><div class="field"><label for="goalSaved">Already saved (₹)</label><input id="goalSaved" type="number" min="0" placeholder="0" value="0"></div><div class="field"><label for="goalIcon">Icon</label><select id="goalIcon"><option>🎧</option><option>✈️</option><option>🛟</option><option>💻</option><option>📚</option><option>🎯</option></select></div></div><button class="primary" id="saveGoal">Save goal</button> <button class="secondary" id="cancelGoal">Cancel</button></div>
+    <div id="goalList"></div>
+  </div>
+</section>
+
+<section class="view" id="view-reports">
+  <h1 class="page-title">Your money, in perspective.</h1><p class="page-sub">A clear summary of how the 30-day plan is tracking.</p>
+  <div class="metrics">
+    <div class="metric"><div class="metric-icon">↗</div><div><div class="metric-label">Total expenses</div><div class="metric-value" id="reportSpent">₹0</div><div class="metric-sub">Recorded spending</div></div></div>
+    <div class="metric"><div class="metric-icon green">₹</div><div><div class="metric-label">Projected end balance</div><div class="metric-value" id="reportForecast">₹0</div><div class="metric-sub">After remaining commitments</div></div></div>
+    <div class="metric"><div class="metric-icon">◷</div><div><div class="metric-label">Average spend/day</div><div class="metric-value" id="reportAverage">₹0</div><div class="metric-sub">Based on elapsed days</div></div></div>
+    <div class="metric"><div class="metric-icon">♡</div><div><div class="metric-label">Risk score</div><div class="metric-value" id="reportRisk">0/100</div><div class="metric-sub">Budget pressure estimate</div></div></div>
+  </div>
+  <div class="panel"><div class="panel-head"><h2>Transactions report</h2><button class="primary" id="exportCsv">Export CSV</button></div><div class="table-wrap"><table><thead><tr><th>Expense</th><th>Category</th><th>Plan day</th><th>Amount</th></tr></thead><tbody id="reportRows"></tbody></table></div></div>
+  <div class="panel" style="margin-top:14px"><div class="panel-head"><h2>30-day plan snapshot</h2><small>Based on current inputs</small></div><div id="snapshot" class="result-grid"></div></div>
+</section>
+
+<section class="view" id="view-health">
+  <h1 class="page-title">Financial health check</h1><p class="page-sub">A practical snapshot of your money habits—not a credit score or financial advice.</p>
+  <div class="panel"><div class="health-card"><div><div class="health-score" id="healthScore">92</div><small style="color:var(--muted)">out of 100</small></div><div class="health-copy"><h3 id="healthTitle">You’re in a healthy position</h3><p id="healthDescription">Your current plan has room for everyday spending and a buffer.</p></div></div><div class="track" style="height:10px;margin-top:20px"><span id="healthTrack" style="width:92%"></span></div><div id="healthFactors" style="margin-top:14px"></div></div>
+  <div class="panel" style="margin-top:14px"><h2>Ways to protect your budget</h2><div id="healthTips"></div></div>
+</section>
+<section class="view" id="view-profile">
+<h1 class="page-title">My profile</h1><p class="page-sub">Personalise your account and how SpendWise greets you.</p>
+<div class="panel" style="max-width:650px">
+<div class="panel-head"><h2>Personal information</h2><small>Synced to your Supabase account</small></div>
+<div class="field"><label for="profileName">Your name</label><input id="profileName" type="text" maxlength="60" placeholder="Enter your name" autocomplete="name"></div>
+<div class="field"><label for="profileEmail">Email address</label><input id="profileEmail" type="email" disabled></div>
+<div class="form-actions"><button class="primary" id="saveProfile" type="button">Save profile</button><button class="secondary" id="profileSignOut" type="button">Sign out</button></div>
+<div class="notice">Your display name appears in the welcome message and top-right account menu.</div>
+</div></section>
+<div class="footer"><span></span>Designed and Developed By <strong>Theo</strong><span></span></div>
+</main>
+</div>
+
+<div id="authOverlay" style="display:flex;position:fixed;inset:0;background:#2b101d66;z-index:30;align-items:center;justify-content:center;padding:18px">
+ <div class="panel" style="width:min(100%,430px);padding:24px">
+  <div class="brand" style="padding:0;margin-bottom:18px"><div class="brand-mark">⌁</div><div><strong>SpendWise</strong><small>Secure personal finance workspace</small></div></div>
+  <h2 id="authTitle" style="font-size:22px;margin:0 0 6px">Create your account</h2>
+  <p id="authHint" style="color:var(--muted);margin:0 0 17px">Sign up to save your own budget, expenses, commitments and goals securely.</p>
+  <div class="field" id="signupNameField"><label for="signupName">Your name</label><input id="signupName" type="text" maxlength="60" autocomplete="name" placeholder="Enter your name"></div>
+  <div class="field"><label for="authEmail">Email address</label><input id="authEmail" type="email" autocomplete="email" placeholder="you@example.com"></div>
+  <div class="field"><label for="authPassword">Password</label><input id="authPassword" type="password" autocomplete="current-password" minlength="6" placeholder="At least 6 characters"></div>
+  <div class="form-actions"><button class="primary" id="authSubmit">Create account</button><button class="secondary" id="authToggle">I already have an account</button></div>
+  <p id="authMessage" style="font-size:12px;color:var(--burgundy);margin:13px 0 0"></p>
+  <p style="font-size:11px;color:var(--muted);margin:12px 0 0">Configure your project in <code>supabase-config.js</code>. Never use a service-role or secret key in frontend code.</p>
+ </div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<script src="./supabase-config.js"></script>
+<script>
+(() => {
+const BUDGET=10000, DAYS=30;
+const $=id=>document.getElementById(id);
+const fmt=n=>new Intl.NumberFormat('en-IN',{style:'currency',currency:'INR',maximumFractionDigits:0}).format(Math.round(n));
+const safe=n=>Number.isFinite(Number(n))?Math.max(0,Number(n)):0;
+const state={
+ day:1,
+ expenses:[],
+ goals:[{id:1,name:'New Headphones',icon:'🎧',target:3000,saved:1000},{id:2,name:'Weekend Trip',icon:'✈️',target:2000,saved:0},{id:3,name:'Emergency Fund',icon:'🛟',target:5000,saved:0}],
+ subs:[{id:1,name:'Music subscription',amount:119,due:5,type:'Subscription'},{id:2,name:'Internet bill',amount:599,due:12,type:'Bill'},{id:3,name:'Mobile recharge',amount:299,due:14,type:'Bill'}],
+ sim:null
+};
+function displayName(){
+ const meta=SW_DB.user?.user_metadata||{};
+ const n=String(meta.display_name||meta.full_name||'').trim();
+ return n||SW_DB.user?.email?.split('@')[0]||'there';
+}
+function refreshIdentity(){
+ const name=displayName();
+ $('welcomeName').textContent=name+'!';
+ $('accountLabel').textContent=name;
+ $('avatarInitial').textContent=(name[0]||'U').toUpperCase();
+ $('profileName').value=String(SW_DB.user?.user_metadata?.display_name||SW_DB.user?.user_metadata?.full_name||'');
+ $('profileEmail').value=SW_DB.user?.email||'';
+}
+const SW_DB = {
+ client:null, user:null, ready:false, saving:false, timer:null,
+ async init(){
+   const cfg=window.SPENDWISE_SUPABASE||{};
+   if(!window.supabase){$('authMessage').textContent='Supabase JavaScript library did not load. Check your internet connection and reload.';return;}
+   if(!cfg.url||!cfg.anonKey||cfg.url.includes('YOUR_PROJECT')||cfg.anonKey.includes('PASTE_')){
+     $('authMessage').textContent='Configure supabase-config.js first: replace both placeholder values with your real Supabase Project URL and publishable/anon key, then save and refresh.';
+     return;
+   }
+   try{
+     this.client=window.supabase.createClient(cfg.url,cfg.anonKey);
+     const {data,error}=await this.client.auth.getSession();
+     if(error)throw error;
+     if(data.session) await this.onSession(data.session);
+     else $('authMessage').textContent='Create an account or sign in to load your saved finance data.';
+     this.client.auth.onAuthStateChange((_event,session)=>setTimeout(()=>this.onSession(session),0));
+   }catch(e){$('authMessage').textContent='Supabase connection error: '+(e.message||'Check your URL and key.');}
+ },
+ async onSession(session){
+   this.user=session?.user||null;
+   if(!this.user){this.ready=false;$('authOverlay').style.display='flex';$('accountLabel').textContent='Sign in';$('welcomeName').textContent='there!';$('avatarInitial').textContent='U';return;}
+   refreshIdentity();
+   try{
+     const {data,error}=await this.client.from('finance_workspace').select('workspace').eq('user_id',this.user.id).maybeSingle();
+     if(error)throw error;
+     if(data?.workspace){
+       const w=data.workspace;
+       if(Array.isArray(w.expenses))state.expenses=w.expenses;
+       if(Array.isArray(w.goals))state.goals=w.goals;
+       if(Array.isArray(w.subs))state.subs=w.subs;
+       if(Number.isInteger(w.day))state.day=Math.max(1,Math.min(30,w.day));
+     }
+     this.ready=true;
+     if(!data)await this.saveNow();
+     $('authOverlay').style.display='none';
+     renderAll();
+     toast('Connected to Supabase. Your data is saved.');
+   }catch(e){
+     this.ready=false;
+     $('authOverlay').style.display='flex';
+     $('authMessage').textContent='Database error: '+(e.message||'Run supabase_setup.sql in your Supabase project.');
+   }
+ },
+ async saveNow(){
+   if(!this.client||!this.user||!this.ready||this.saving)return;
+   this.saving=true;
+   try{
+     const workspace={day:state.day,expenses:state.expenses,goals:state.goals,subs:state.subs};
+     const {error}=await this.client.from('finance_workspace').upsert({user_id:this.user.id,workspace,updated_at:new Date().toISOString()},{onConflict:'user_id'});
+     if(error)throw error;
+   }catch(e){toast('Database save failed: '+(e.message||'Check SQL table and policies.'));}
+   finally{this.saving=false;}
+ },
+ scheduleSave(){if(!this.ready)return;clearTimeout(this.timer);this.timer=setTimeout(()=>this.saveNow(),500);},
+ async signOut(){if(this.client)await this.client.auth.signOut();}
+};
+const categoryColors={'Food & Dining':'#7c1838','Transport':'#b83b60','Shopping':'#d75c80','Entertainment':'#ef8da8','Bills & Utilities':'#dba6b5','Health':'#9b6b7c','Education':'#c995a6','Others':'#ead0d8'};
+const icons={'Food & Dining':'🍲','Transport':'🚌','Shopping':'🛍️','Entertainment':'🎬','Bills & Utilities':'🧾','Health':'💊','Education':'📚','Others':'✦'};
+function totals(){const spent=state.expenses.reduce((a,e)=>a+e.amount,0);const income=state.expenses.filter(e=>e.kind==='income').reduce((a,e)=>a+e.amount,0);const savingsMoves=state.expenses.filter(e=>e.kind==='save').reduce((a,e)=>a+e.amount,0);const netSpent=state.expenses.filter(e=>e.kind!=='income'&&e.kind!=='save').reduce((a,e)=>a+e.amount,0);const subs=state.subs.reduce((a,s)=>a+s.amount,0);const upcoming=state.subs.filter(s=>s.due>=state.day).reduce((a,s)=>a+s.amount,0);const balance=BUDGET+income-netSpent-savingsMoves;const remainingDays=Math.max(1,DAYS-state.day+1);const daily=balance/remainingDays;const forecast=balance-upcoming;const spendRate=netSpent/BUDGET;const risk=Math.max(0,Math.min(100,Math.round((spendRate*48)+(daily<180?22:daily<260?10:0)+(forecast<1000?20:forecast<2500?10:0)+(upcoming>Math.max(1,balance)*.25?10:0)+(balance<0?35:0))));const score=Math.max(0,100-risk);return{spent,netSpent,income,savingsMoves,subs,upcoming,balance,daily,remainingDays,forecast,risk,score};}
+function healthName(score){return score>=75?'Good':score>=50?'Fair':score>=30?'At risk':'Critical';}
+function toast(msg){const el=$('toast');el.textContent=msg;el.classList.add('show');clearTimeout(toast.timer);toast.timer=setTimeout(()=>el.classList.remove('show'),2600);}
+let authMode='signup';
+$('authToggle').addEventListener('click',()=>{authMode=authMode==='signup'?'signin':'signup';$('signupNameField').style.display=authMode==='signup'?'block':'none';$('authTitle').textContent=authMode==='signup'?'Create your account':'Welcome back';$('authHint').textContent=authMode==='signup'?'Sign up to save your own budget, expenses, commitments and goals securely.':'Sign in to load your saved finance workspace.';$('authSubmit').textContent=authMode==='signup'?'Create account':'Sign in';$('authToggle').textContent=authMode==='signup'?'I already have an account':'Create a new account';$('authMessage').textContent='';});
+$('authSubmit').addEventListener('click',async()=>{
+ const email=$('authEmail').value.trim(),password=$('authPassword').value;if(authMode==='signup'&&!$('signupName').value.trim()){$('authMessage').textContent='Please enter your name.';return;}
+ if(!email||password.length<6){$('authMessage').textContent='Enter a valid email and a password with at least 6 characters.';return;}
+ const cfg=window.SPENDWISE_SUPABASE||{};
+ if(!window.supabase||!cfg.url||!cfg.anonKey||cfg.url.includes('YOUR_PROJECT')||cfg.anonKey.includes('PASTE_')){
+   $('authMessage').textContent='SpendWise build 2026-10-11: config check failed. Verify that this page is being served from the same folder as your edited supabase-config.js.';return;
+ }
+ try{
+   if(!SW_DB.client)SW_DB.client=window.supabase.createClient(cfg.url,cfg.anonKey);
+   $('authSubmit').disabled=true;$('authMessage').textContent='Please wait…';
+   const res=authMode==='signup'?await SW_DB.client.auth.signUp({email,password,options:{data:{display_name:$('signupName').value.trim()}}}):await SW_DB.client.auth.signInWithPassword({email,password});
+   if(res.error)throw res.error;
+   if(authMode==='signup'&&!res.data.session)$('authMessage').textContent='Account created. Check your email to confirm it, then sign in.';
+   else if(res.data.session)await SW_DB.onSession(res.data.session);
+ }catch(e){$('authMessage').textContent=e.message||'Authentication failed.';}
+ finally{$('authSubmit').disabled=false;}
+});
+$('accountBtn').addEventListener('click',()=>{if(SW_DB.user)go('profile');else $('authOverlay').style.display='flex';});
+
+function initDaySelect(id){const el=$(id);if(!el)return;el.innerHTML=Array.from({length:DAYS},(_,i)=>`<option value="${i+1}" ${i+1===state.day?'selected':''}>Day ${i+1}</option>`).join('');}
+['expenseDate','simDay','subDate'].forEach(initDaySelect);
+function go(view){document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id==='view-'+view));document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.view===view));$('sidebar').classList.remove('open');if(view==='reports')renderReports();if(view==='health')renderHealth();if(view==='goals')renderGoals();if(view==='subscriptions')renderSubs();if(view==='expense')renderTransactions();window.scrollTo({top:0,behavior:'smooth'});}
+document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.view)));
+document.querySelectorAll('[data-goto]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.goto)));
+$('menuBtn').addEventListener('click',()=>$('sidebar').classList.toggle('open'));
+$('saveProfile').addEventListener('click',async()=>{
+ if(!SW_DB.client||!SW_DB.user){toast('Please sign in first.');return;}
+ const name=$('profileName').value.trim();
+ if(!name){toast('Please enter your name.');return;}
+ $('saveProfile').disabled=true;
+ try{
+  const {data,error}=await SW_DB.client.auth.updateUser({data:{display_name:name}});
+  if(error)throw error;
+  SW_DB.user=data.user;
+  refreshIdentity();
+  toast('Profile updated successfully.');
+ }catch(e){toast('Could not update profile: '+e.message);}
+ finally{$('saveProfile').disabled=false;}
+});
+$('profileSignOut').addEventListener('click',()=>SW_DB.signOut());
+function addExpense(e){state.expenses.unshift(e);renderAll();toast('Saved. Your budget has been updated.');}
+$('addExpenseBtn').addEventListener('click',()=>{const name=$('expenseName').value.trim(),amount=safe($('expenseAmount').value),category=$('expenseCategory').value,day=Number($('expenseDate').value);if(!name||amount<=0){toast('Add a description and an amount above ₹0.');return;}if(amount>100000){toast('Please enter an amount under ₹1,00,000.');return;}addExpense({id:Date.now(),name,amount,category,day,kind:'expense'});$('expenseName').value='';$('expenseAmount').value='';go('expense');});
+function renderTransactions(){const rows=state.expenses.filter(e=>e.kind!=='save'&&e.kind!=='income');$('transactionCount').textContent=`${rows.length} transaction${rows.length===1?'':'s'}`;$('transactionRows').innerHTML=rows.length?rows.map(e=>`<tr><td>${esc(e.name)}</td><td>${esc(e.category)}</td><td>Day ${e.day}</td><td>${fmt(e.amount)}</td><td><button class="text-btn" data-delete-expense="${e.id}">Remove</button></td></tr>`).join(''):'<tr><td colspan="5" class="empty">No expenses yet. Add your first expense to start tracking.</td></tr>';document.querySelectorAll('[data-delete-expense]').forEach(b=>b.addEventListener('click',()=>{state.expenses=state.expenses.filter(e=>e.id!==Number(b.dataset.deleteExpense));renderAll();toast('Expense removed.');}));}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function renderDashboard(){const t=totals();$('dayLabel').textContent=`Day ${state.day} of ${DAYS}`;$('daysLeft').textContent=`${DAYS-state.day} days left`;$('dayTrack').style.width=(state.day/DAYS*100)+'%';$('mBudget').textContent=fmt(BUDGET);$('mBalance').textContent=fmt(t.balance);$('mBalanceSub').textContent=`${Math.round(t.balance/BUDGET*100)}% of starting budget`; $('mBalanceSub').className='metric-sub '+(t.balance>=0?'green-text':'red-text');$('mDaily').textContent=fmt(t.daily);$('mDailySub').textContent=`per day · ${t.remainingDays} days left`;$('mHealth').textContent=healthName(t.score);$('mHealthSub').textContent=t.score>=75?'Keep going!':t.score>=50?'Watch your pace':'Time to reset your plan';$('miniSpent').textContent=fmt(t.netSpent);$('miniSpentPct').textContent=Math.round(t.netSpent/BUDGET*100)+'% of budget';$('miniCommit').textContent=fmt(t.upcoming);$('miniSavings').textContent=fmt(state.goals.reduce((a,g)=>a+g.saved,0));$('miniSubs').textContent=fmt(t.subs);$('progressPct').textContent=Math.round(Math.max(0,Math.min(100,t.balance/BUDGET*100)))+'%';$('budgetTrack').style.width=Math.max(0,Math.min(100,t.balance/BUDGET*100))+'%';$('spentLabel').textContent=fmt(t.netSpent);$('remainingLabel').textContent=fmt(t.balance);$('riskLabel').textContent=t.risk<30?'Low risk':t.risk<60?'Moderate risk':'High risk';$('riskLabel').style.color=t.risk<30?'var(--green)':t.risk<60?'var(--amber)':'var(--burgundy)';$('riskPct').textContent=t.risk+'%';$('riskBar').style.width=t.risk+'%';$('riskBar').style.background=t.risk<30?'var(--green)':t.risk<60?'#d69b35':'var(--burgundy)';$('riskNote').textContent=t.risk<30?'✦ Your budget is in a healthy position. Keep a buffer for surprises.':t.risk<60?'⚠ Your budget is getting tighter. Review optional spending and upcoming bills.':'⚠ Your plan is under pressure. Prioritise essentials and reconsider non-urgent purchases.';$('donutTotal').textContent=fmt(t.netSpent);renderBreakdown();renderGoalsPreview();renderCommitPreview();drawChart();}
+function renderBreakdown(){const sums={};state.expenses.filter(e=>e.kind==='expense'||e.kind==='unexpected'||e.kind==='purchase').forEach(e=>sums[e.category]=(sums[e.category]||0)+e.amount);const sorted=Object.entries(sums).sort((a,b)=>b[1]-a[1]);const total=sorted.reduce((a,x)=>a+x[1],0);let acc=0;const segments=sorted.map(([c,v])=>{const start=acc;acc+=total?v/total*100:0;return `${categoryColors[c]||'#ead0d8'} ${start}% ${acc}%`;});$('donut').style.background=total?`conic-gradient(${segments.join(',')})`:'conic-gradient(#f3e8ec 0 100%)';$('breakdown').innerHTML=sorted.length?sorted.slice(0,6).map(([c,v])=>`<div class="breakdown-row"><i class="dot" style="background:${categoryColors[c]||'#ead0d8'};margin:0"></i><span>${esc(c)}</span><span class="amount">${fmt(v)}</span></div>`).join(''):'<div class="empty">Your category breakdown will appear here.</div>';}
+function renderGoalsPreview(){const goals=state.goals.slice(0,3);$('goalPreview').innerHTML=goals.length?goals.map(g=>`<div class="goal"><div class="goal-top"><div class="goal-emoji">${g.icon}</div><div class="goal-info"><strong>${esc(g.name)}</strong><small>${fmt(g.saved)} of ${fmt(g.target)}</small></div><span class="goal-percent">${Math.min(100,Math.round(g.saved/g.target*100))}%</span></div><div class="track"><span style="width:${Math.min(100,g.saved/g.target*100)}%"></span></div></div>`).join(''):'<p class="empty">Add a goal to give your savings a direction.</p>';}
+function renderCommitPreview(){const list=state.subs.filter(s=>s.due>=state.day).sort((a,b)=>a.due-b.due).slice(0,4);$('commitPreview').innerHTML=list.length?list.map(s=>`<div class="commitment"><div class="commit-icon">${s.type==='Subscription'?'♫':s.type==='Bill'?'▤':'₹'}</div><div class="commit-text"><strong>${esc(s.name)}</strong><small>Day ${s.due} · ${esc(s.type)}</small></div><span class="money">${fmt(s.amount)}</span></div>`).join(''):'<p class="empty">No upcoming commitments. Nice and clear.</p>';}
+function drawChart(){const canvas=$('financeChart');if(!canvas)return;const rect=canvas.getBoundingClientRect(),dpr=window.devicePixelRatio||1;canvas.width=Math.max(1,rect.width*dpr);canvas.height=Math.max(1,rect.height*dpr);const ctx=canvas.getContext('2d');ctx.scale(dpr,dpr);const w=rect.width,h=rect.height,p={l:38,r:10,t:12,b:26},cw=w-p.l-p.r,ch=h-p.t-p.b;ctx.clearRect(0,0,w,h);const mode=$('chartMode').value;const daySpend=Array(30).fill(0);state.expenses.forEach(e=>{if(e.kind!=='income'&&e.kind!=='save')daySpend[Math.max(0,e.day-1)]+=e.amount;});const t=totals();let values;if(mode==='daily'){values=daySpend.map((v,i)=>Math.max(v,Math.min(600,t.balance/(DAYS-state.day+1)*.72)));}else{let run=BUDGET;values=daySpend.map(v=>{run-=v;return run;});}const maxVal=Math.max(1000,...values)*1.12;ctx.font='10px system-ui';ctx.textAlign='right';for(let i=0;i<=4;i++){const y=p.t+ch*i/4;ctx.strokeStyle='#f1e8eb';ctx.beginPath();ctx.moveTo(p.l,y);ctx.lineTo(w-p.r,y);ctx.stroke();ctx.fillStyle='#887780';const val=maxVal*(1-i/4);ctx.fillText(val>=1000?'₹'+Math.round(val/1000)+'k':'₹'+Math.round(val),p.l-6,y+3);}const step=cw/30;values.forEach((v,i)=>{const x=p.l+i*step+step*.2,bw=Math.max(2,step*.58),bh=Math.min(ch,v/maxVal*ch);ctx.fillStyle=i<state.day?'#7c1838':'#e9cbd4';ctx.beginPath();ctx.roundRect(x,p.t+ch-bh,bw,bh,2);ctx.fill();});if(mode==='cumulative'){ctx.strokeStyle='#c13c61';ctx.lineWidth=2;ctx.setLineDash([4,4]);ctx.beginPath();values.forEach((v,i)=>{const x=p.l+i*step+step*.5,y=p.t+ch-Math.max(0,v)/maxVal*ch;i?ctx.lineTo(x,y):ctx.moveTo(x,y);});ctx.stroke();ctx.setLineDash([]);}ctx.fillStyle='#75666c';ctx.textAlign='center';[0,4,9,14,19,24,29].forEach(i=>ctx.fillText('D'+(i+1),p.l+i*step+step/2,h-7));}
+$('chartMode').addEventListener('change',drawChart);
+function renderSubs(){const list=$('subscriptionList');list.innerHTML=state.subs.length?state.subs.slice().sort((a,b)=>a.due-b.due).map(s=>`<div class="commitment"><div class="commit-icon">${s.type==='Subscription'?'♫':s.type==='Bill'?'▤':'₹'}</div><div class="commit-text"><strong>${esc(s.name)}</strong><small>${esc(s.type)} · Due day ${s.due}</small></div><span class="money">${fmt(s.amount)}/mo</span><button class="text-btn" data-remove-sub="${s.id}">Remove</button></div>`).join(''):'<div class="empty">No commitments added yet.</div>';const t=totals();$('subscriptionSummary').textContent=`Recurring costs total ${fmt(t.subs)} per month. ${fmt(t.upcoming)} is still upcoming in this 30-day plan.`;document.querySelectorAll('[data-remove-sub]').forEach(b=>b.addEventListener('click',()=>{state.subs=state.subs.filter(s=>s.id!==Number(b.dataset.removeSub));renderAll();toast('Commitment removed.');}));}
+$('addSubToggle').addEventListener('click',()=>$('subForm').style.display=$('subForm').style.display==='none'?'block':'none');$('cancelSub').addEventListener('click',()=>$('subForm').style.display='none');
+$('saveSub').addEventListener('click',()=>{const name=$('subName').value.trim(),amount=safe($('subAmount').value),due=Number($('subDate').value),type=$('subType').value;if(!name||amount<=0){toast('Enter a name and monthly amount.');return;}state.subs.push({id:Date.now(),name,amount,due,type});$('subName').value='';$('subAmount').value='';$('subForm').style.display='none';renderAll();toast('Commitment added.');});
+function renderGoals(){ $('goalList').innerHTML=state.goals.length?state.goals.map(g=>`<div class="goal" style="padding:14px 0;border-bottom:1px solid var(--line)"><div class="goal-top"><div class="goal-emoji">${g.icon}</div><div class="goal-info"><strong>${esc(g.name)}</strong><small>${fmt(g.saved)} saved · Target ${fmt(g.target)}</small></div><span class="goal-percent">${Math.min(100,Math.round(g.saved/g.target*100))}%</span></div><div class="track"><span style="width:${Math.min(100,g.saved/g.target*100)}%"></span></div><div class="form-actions"><button class="secondary" data-add-saved="${g.id}">＋ Add savings</button><button class="text-btn" data-delete-goal="${g.id}">Remove goal</button></div></div>`).join(''):'<div class="empty">No savings goals yet. Add one to get started.</div>';document.querySelectorAll('[data-add-saved]').forEach(b=>b.addEventListener('click',()=>{const g=state.goals.find(x=>x.id===Number(b.dataset.addSaved));const raw=prompt(`How much would you like to add to ${g.name}? (₹)`);if(raw===null)return;const amount=safe(raw);if(amount<=0){toast('Enter an amount above ₹0.');return;}if(amount>totals().balance){toast('That is more than your remaining budget. Try a smaller amount.');return;}g.saved+=amount;state.expenses.unshift({id:Date.now(),name:'Savings: '+g.name,amount,category:'Savings',day:state.day,kind:'save'});renderAll();toast('Savings goal updated.');}));document.querySelectorAll('[data-delete-goal]').forEach(b=>b.addEventListener('click',()=>{state.goals=state.goals.filter(g=>g.id!==Number(b.dataset.deleteGoal));renderAll();toast('Goal removed.');}));}
+$('addGoalToggle').addEventListener('click',()=>$('goalForm').style.display=$('goalForm').style.display==='none'?'block':'none');$('cancelGoal').addEventListener('click',()=>$('goalForm').style.display='none');
+$('saveGoal').addEventListener('click',()=>{const name=$('goalName').value.trim(),target=safe($('goalTarget').value),saved=safe($('goalSaved').value),icon=$('goalIcon').value;if(!name||target<=0||saved>target){toast('Add a goal name, valid target and savings below the target.');return;}state.goals.push({id:Date.now(),name,target,saved,icon});$('goalName').value='';$('goalTarget').value='';$('goalSaved').value='0';$('goalForm').style.display='none';renderAll();toast('Savings goal created.');});
+function simData(){const type=$('simType').value,name=$('simName').value.trim()||'New decision',amount=safe($('simAmount').value),category=$('simCategory').value,day=Number($('simDay').value);const t=totals();let delta=amount;if(type==='income')delta=-amount;if(type==='subscription')delta=0;const projected=t.balance-delta;const upcoming=t.upcoming+(type==='subscription'?amount:0);const daily=projected/Math.max(1,DAYS-state.day+1);const forecast=projected-upcoming;const risk=Math.max(0,Math.min(100,Math.round((Math.max(0,BUDGET-projected)/BUDGET*48)+(daily<180?22:daily<260?10:0)+(forecast<1000?20:forecast<2500?10:0)+(projected<0?35:0))));return{type,name,amount,category,day,projected,daily,forecast,risk,delta};}
+function preview(){const d=simData();if(d.amount<=0){toast('Enter an amount above ₹0.');return;}state.sim=d;const t=totals();const effect=d.type==='income'?'adds to':d.type==='save'?'moves into savings from':d.type==='subscription'?'adds a recurring commitment of':'uses';const label=d.type==='income'?'Extra income':d.type==='save'?'Savings transfer':d.type==='unexpected'?'Unexpected expense':d.type==='subscription'?'Monthly subscription':'One-time purchase';$('simResult').style.display='block';$('simActions').style.display='flex';$('simResult').innerHTML=`<small style="color:var(--burgundy);font-weight:750;text-transform:uppercase;letter-spacing:.06em">${label} · Preview</small><h3 style="margin:5px 0 0">${esc(d.name)}</h3><p style="margin:3px 0;color:var(--muted)">This decision ${effect} ${fmt(d.amount)} ${d.type==='income'?'to your available balance':d.type==='subscription'?'to upcoming commitments':'of your available balance'}.</p><div class="result-grid"><div><small>New balance</small><b style="color:${d.projected<0?'var(--burgundy)':'var(--ink)'}">${fmt(d.projected)}</b></div><div><small>Daily allowance</small><b>${fmt(d.daily)}</b></div><div><small>Month-end forecast</small><b>${fmt(d.forecast)}</b></div><div><small>Risk estimate</small><b>${d.risk}%</b></div><div><small>Balance change</small><b>${d.delta>0?'−':'+'}${fmt(Math.abs(d.delta))}</b></div><div><small>Financial health</small><b>${healthName(100-d.risk)}</b></div></div><p style="font-size:11px;color:var(--muted);margin-bottom:0">Forecast includes commitments still due. This is a planning estimate, not a bank balance.</p>`;}
+$('previewDecision').addEventListener('click',preview);$('resetSim').addEventListener('click',()=>{$('simType').value='purchase';$('simName').value='New headphones';$('simAmount').value='1800';$('simCategory').value='Shopping';$('simDay').value=state.day;$('simResult').style.display='none';$('simActions').style.display='none';state.sim=null;});
+$('discardDecision').addEventListener('click',()=>{state.sim=null;$('simResult').style.display='none';$('simActions').style.display='none';});
+$('confirmDecision').addEventListener('click',()=>{const d=state.sim;if(!d)return;let kind=d.type==='income'?'income':d.type==='save'?'save':d.type==='unexpected'?'unexpected':d.type==='subscription'?'subscription':'purchase';if(d.type==='subscription'){state.subs.push({id:Date.now(),name:d.name,amount:d.amount,due:d.day,type:'Subscription'});}else if(d.type==='save'){const goal=state.goals.find(g=>g.name.toLowerCase().includes(d.name.toLowerCase()))||state.goals[0];if(goal)goal.saved+=d.amount;addExpense({id:Date.now(),name:'Savings: '+d.name,amount:d.amount,category:'Savings',day:d.day,kind:'save'});}else{addExpense({id:Date.now(),name:d.name,amount:d.amount,category:d.category,day:d.day,kind});}state.sim=null;$('simResult').style.display='none';$('simActions').style.display='none';renderAll();toast('Decision applied to your plan.');go('dashboard');});
+function renderReports(){const t=totals();$('reportSpent').textContent=fmt(t.netSpent);$('reportForecast').textContent=fmt(t.forecast);$('reportAverage').textContent=fmt(t.netSpent/Math.max(1,state.day));$('reportRisk').textContent=t.risk+'/100';const rows=state.expenses.filter(e=>e.kind!=='save'&&e.kind!=='income');$('reportRows').innerHTML=rows.length?rows.map(e=>`<tr><td>${esc(e.name)}</td><td>${esc(e.category)}</td><td>Day ${e.day}</td><td>${fmt(e.amount)}</td></tr>`).join(''):'<tr><td colspan="4" class="empty">No recorded expenses yet.</td></tr>';$('snapshot').innerHTML=[['Starting budget',fmt(BUDGET)],['Total spent',fmt(t.netSpent)],['Available balance',fmt(t.balance)],['Remaining commitments',fmt(t.upcoming)],['Savings tracked',fmt(state.goals.reduce((a,g)=>a+g.saved,0))],['Daily allowance',fmt(t.daily)]].map(([a,b])=>`<div><small>${a}</small><b>${b}</b></div>`).join('');}
+$('exportCsv').addEventListener('click',()=>{const rows=[['Name','Category','Plan day','Amount (INR)','Type'],...state.expenses.map(e=>[e.name,e.category,e.day,e.amount,e.kind])];const csv=rows.map(r=>r.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\r\n');const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='spendwise-report.csv';a.click();URL.revokeObjectURL(url);toast('CSV report exported.');});
+function renderHealth(){const t=totals();$('healthScore').textContent=t.score;$('healthTitle').textContent=t.score>=75?'You’re in a healthy position':t.score>=50?'You have some room to improve':t.score>=30?'Your budget needs attention':'Your budget is under serious pressure';$('healthDescription').textContent=t.score>=75?'Your current plan has room for everyday spending and a buffer.':t.score>=50?'A few adjustments can give you more breathing room this month.':'Review non-essential costs and prioritise upcoming essentials.';$('healthTrack').style.width=t.score+'%';$('healthTrack').style.background=t.score>=75?'var(--green)':t.score>=50?'#d69b35':'var(--burgundy)';const factors=[['Budget remaining',t.balance>=BUDGET*.4?'Strong':t.balance>=BUDGET*.15?'Moderate':'Needs attention',t.balance>=BUDGET*.4],['Upcoming commitments',t.upcoming<=t.balance*.2?'Manageable':t.upcoming<=t.balance*.4?'Moderate':'High pressure',t.upcoming<=t.balance*.2],['Daily allowance',t.daily>=300?'Comfortable':t.daily>=180?'Tight':'Very tight',t.daily>=300]];$('healthFactors').innerHTML=factors.map(([a,b,good])=>`<div class="commitment"><div class="commit-icon">${good?'✓':'!'}</div><div class="commit-text"><strong>${a}</strong><small>${b}</small></div><b style="color:${good?'var(--green)':'var(--amber)'}">${good?'On track':'Review'}</b></div>`).join('');const tips=[];if(t.daily<250)tips.push('Set a smaller daily limit and delay optional purchases.');if(t.upcoming>t.balance*.25)tips.push('Review upcoming commitments and cancel anything you no longer use.');if(t.risk>=30)tips.push('Protect a small emergency buffer before funding wants.');if(state.goals.length===0)tips.push('Create a savings goal to give your spare money a clear purpose.');if(!tips.length)tips.push('Keep logging expenses, check your plan every few days, and avoid spending the entire buffer.');$('healthTips').innerHTML=tips.map(x=>`<div class="commitment"><div class="commit-icon">✦</div><div class="commit-text"><strong>${esc(x)}</strong></div></div>`).join('');}
+function renderAll(){renderDashboard();renderTransactions();renderSubs();renderGoals();if($('view-reports').classList.contains('active'))renderReports();if($('view-health').classList.contains('active'))renderHealth();if(window.SW_DB)SW_DB.scheduleSave();}
+window.addEventListener('resize',()=>{if($('view-dashboard').classList.contains('active'))drawChart();});
+renderAll();
+SW_DB.init();
+})();
+</script>
+</body>
+</html>
